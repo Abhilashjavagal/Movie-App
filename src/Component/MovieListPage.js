@@ -3,31 +3,17 @@ import { Link } from 'react-router-dom';
 import { useGetMoviesQuery } from './moviesApi';
 import "../App.scss";
 import Header from './Header';
-import CartPopup from './CartPopup';
 import { Button, Modal } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
-
-
 function MovieListPage() {
 
-    const [searchTerm, setSearchTerm] = useState(''); // Initialize searchTerm as empty string
+    const [searchTerm, setSearchTerm] = useState('');
     const { data: movies, isLoading, isError } = useGetMoviesQuery(searchTerm);
     const [cartItems, setCartItems] = useState([]);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
-    const [open, setOpen] = React.useState(false)
 
     const handleAddToCart = (movie) => {
-        // setCartItems((prevItems) => [...prevItems, movie]);
-        // const movieTitles = cartItems.map((item) => item.Title);
-        // alert(`Added to cart:\n${movieTitles.join('\n')}`);
-        // // setIsCartOpen(true);
-        // // console.log('Cart Items:', cartItems);
-        // setCartItems((prevItems) => [
-        //     ...prevItems,
-        //     { ...movie, cartItemId: generateCartItemId() },
-        // ]);
-        // setIsModalOpen(true);
         const isMovieInCart = cartItems.some((item) => item.imdbID === movie.imdbID);
 
         if (!isMovieInCart) {
@@ -59,11 +45,11 @@ function MovieListPage() {
 
 
     useEffect(() => {
-        setSearchTerm(generateRandomSearchTerm()); // Set the default search term to a random value
-    }, []);
+        setSearchTerm(generateRandomSearchTerm());
+    },);
 
     const generateRandomSearchTerm = () => {
-        const searchTerms = ['spy', 'action', 'comedy', 'drama']; // Array of predefined search terms
+        const searchTerms = ['spy', 'action', 'comedy', 'drama'];
         const randomIndex = Math.floor(Math.random() * searchTerms.length);
         return searchTerms[randomIndex];
     };

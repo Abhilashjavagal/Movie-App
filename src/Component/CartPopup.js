@@ -1,5 +1,3 @@
-// CartPopup.js
-
 import React from 'react';
 
 function CartPopup({ cartItems, onCancel }) {
