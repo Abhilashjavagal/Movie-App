@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MovieListPage from './MovieListPage';
-import MovieDetailsPage from './MovieDetailsPage';
-import Header from './Header';
+import MovieListPage from './Component/MovieListPage';
+import MovieDetailsPage from './Component/MovieDetailsPage';
+import Header from './Component/Header';
 import "./App.scss"
 
 function App() {

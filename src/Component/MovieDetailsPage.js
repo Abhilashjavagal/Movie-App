@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetMovieByIdQuery } from './moviesApi';
-import "./App.scss";
+import "../App.scss";
 
 function MovieDetailsPage() {
     const { imdbID } = useParams();
@@ -20,7 +20,8 @@ function MovieDetailsPage() {
     }
 
     return (
-        <div class="row details">
+        <div class="details">
+        <div class="row">
             <div class="col-4 mt-4">
                 <img src={movie.Poster} />
 
@@ -38,6 +39,7 @@ function MovieDetailsPage() {
 
             </div >
         </div >
+        </div>
     );
 }
 

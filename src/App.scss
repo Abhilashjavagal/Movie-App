@@ -35,7 +35,7 @@ body {
   width: 300px;
   margin: 10px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid red;
   border-radius: 4px;
   text-align: center;
 }
@@ -55,22 +55,26 @@ p {
   color: black;
 }
 
+.list{
+  background-color: aqua;
+}
 .details {
-  width: 90%;
+  // width: 90%;
+  background-color: blueviolet;
 }
 
+.view{
+  font-weight: 900;
+  color: black;
+}
 .header {
 
   background-color: navy;
   color: white;
   height: 72px;
-
   padding: 0px 40px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
 }

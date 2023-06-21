@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
-import { moviesApi } from './moviesApi';
+import { moviesApi } from './Component/moviesApi';
 
 // Create the Redux store
 const store = configureStore({

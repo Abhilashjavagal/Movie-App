@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useGetMoviesQuery } from './moviesApi';
-import "./App.scss";
+import "../App.scss";
 import Header from './Header';
 import CartPopup from './CartPopup';
 import { Button, Modal } from 'semantic-ui-react';
@@ -82,7 +82,7 @@ function MovieListPage() {
     }
 
     return (
-        <div>
+        <div class="list">
             <form onSubmit={handleSearch} class="search">
                 <input type="text" name="search" class="input" placeholder="Search" />
                 <button type="submit" class="btn btn-primary">Search</button>
@@ -95,12 +95,12 @@ function MovieListPage() {
                             <h3>{movie.Title}</h3>
                             <p>Year: {movie.Year}</p>
                             <Button
-                                type="button"
+                                type="button" color='green'
                                 onClick={() => handleAddToCart(movie)}
                             >
                                 Add to Cart
                             </Button>
-                            <Link to={`/movies/${movie.imdbID}`}>View Details</Link>
+                            <Link to={`/movies/${movie.imdbID}`} class="view">View Details</Link>
                         </div>
                     ))}
                 </div>
@@ -118,11 +118,11 @@ function MovieListPage() {
                     {cartItems.length > 0 ? (
                         <ul>
                             {cartItems.map((item) => (
-                                <li key={item.cartItemId} className='p-2'>
+                                <p key={item.cartItemId} className='p-2'>
                                     {item.Title}
 
                                     <i class="fa fa-trash remove" aria-hidden="true" onClick={() => handleRemoveFromCart(item.cartItemId)}></i>
-                                </li>
+                                </p>
                             ))}
                         </ul>
                     ) : (
@@ -130,7 +130,7 @@ function MovieListPage() {
                     )}
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button onClick={handleCloseModal}>Close</Button>
+                    <Button onClick={handleCloseModal} color='red'>Close</Button>
                 </Modal.Actions>
             </Modal>
             <i class="fa fa-trash" aria-hidden="true"></i>
@@ -140,28 +140,3 @@ function MovieListPage() {
 }
 
 export default MovieListPage;
-
-
-// <Modal
-//     closeIcon
-//     open={open}
-//     trigger={<Button>Show Modal</Button>}
-//     onClose={() => setOpen(false)}
-//     onOpen={() => setOpen(true)}
-// >
-//     <Header icon='archive' content='Archive Old Messages' />
-//     <Modal.Content>
-//         <p>
-//             Your inbox is getting full, would you like us to enable automatic
-//             archiving of old messages?
-//         </p>
-//     </Modal.Content>
-//     <Modal.Actions>
-//         <Button color='red' onClick={() => setOpen(false)}>
-//             <Icon name='remove' /> No
-//         </Button>
-//         <Button color='green' onClick={() => setOpen(false)}>
-//             <Icon name='checkmark' /> Yes
-//         </Button>
-//     </Modal.Actions>
-// </Modal>
