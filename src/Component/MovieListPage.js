@@ -6,12 +6,15 @@ import Header from './Header';
 import { Button, Modal } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
+
+
 function MovieListPage() {
 
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState(''); // Initialize searchTerm as empty string
     const { data: movies, isLoading, isError } = useGetMoviesQuery(searchTerm);
     const [cartItems, setCartItems] = useState([]);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
 
     const handleAddToCart = (movie) => {
         const isMovieInCart = cartItems.some((item) => item.imdbID === movie.imdbID);
@@ -45,11 +48,11 @@ function MovieListPage() {
 
 
     useEffect(() => {
-        setSearchTerm(generateRandomSearchTerm());
-    },);
+        setSearchTerm(generateRandomSearchTerm()); // Set the default search term to a random value
+    }, []);
 
     const generateRandomSearchTerm = () => {
-        const searchTerms = ['spy', 'action', 'comedy', 'drama'];
+        const searchTerms = ['spy', 'action', 'comedy', 'drama']; // Array of predefined search terms
         const randomIndex = Math.floor(Math.random() * searchTerms.length);
         return searchTerms[randomIndex];
     };
@@ -70,7 +73,7 @@ function MovieListPage() {
     return (
         <div class="list">
             <form onSubmit={handleSearch} class="search">
-                <input type="text" name="search" class="input" placeholder="Search" />
+                <input type="text" name="search" class="input" placeholder="Search movies..." />
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
             {movies && movies.Search && movies.Search.length > 0 ? (
@@ -104,11 +107,11 @@ function MovieListPage() {
                     {cartItems.length > 0 ? (
                         <ul>
                             {cartItems.map((item) => (
-                                <p key={item.cartItemId} className='p-2'>
+                                <li key={item.cartItemId} className='p-2'>
                                     {item.Title}
 
                                     <i class="fa fa-trash remove" aria-hidden="true" onClick={() => handleRemoveFromCart(item.cartItemId)}></i>
-                                </p>
+                                </li>
                             ))}
                         </ul>
                     ) : (
@@ -116,7 +119,7 @@ function MovieListPage() {
                     )}
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button onClick={handleCloseModal} color='red'>Close</Button>
+                    <Button onClick={handleCloseModal}  color='red' >Close</Button>
                 </Modal.Actions>
             </Modal>
             <i class="fa fa-trash" aria-hidden="true"></i>
