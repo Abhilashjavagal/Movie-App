@@ -18,6 +18,7 @@ function MovieListPage() {
 
     const handleAddToCart = (movie) => {
         const isMovieInCart = cartItems.some((item) => item.imdbID === movie.imdbID);
+       console.log(isMovieInCart)
 
         if (!isMovieInCart) {
             setCartItems((prevItems) => [
@@ -27,6 +28,10 @@ function MovieListPage() {
         }
         setIsModalOpen(true);
     };
+
+    const disable = (movie) => {
+       return cartItems.some((item) => item.imdbID === movie.imdbID);
+    }
 
     const handleRemoveFromCart = (itemId) => {
         setCartItems((prevItems) =>
@@ -86,8 +91,11 @@ function MovieListPage() {
                             <Button
                                 type="button" color='green'
                                 onClick={() => handleAddToCart(movie)}
-                            >
-                                Add to Cart
+                                disabled ={disable(movie)}
+
+                            >{
+                                    disable(movie)?'Added':'Add to Cart'
+                                }
                             </Button>
                             <Link to={`/movies/${movie.imdbID}`} class="view">View Details</Link>
                         </div>
